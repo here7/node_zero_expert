@@ -1,0 +1,64 @@
+const employees = [
+    {
+        id: 1,
+        name: 'Dani'
+    },
+    {
+        id: 2,
+        name: 'Irene'
+    },
+    {
+        id: 3,
+        name: 'John'
+    }
+];
+
+const salaries = [
+    {
+        id: 1,
+        name: 1000
+    },
+    {
+        id: 2,
+        name: 1500
+    },
+];
+
+
+const getEmployee = ( id, my_callback ) => {
+    const employee = employees.find( e => e.id === id)?.name; // e.id === id same than return e.id === id
+    
+    if(employee){
+        my_callback(null, employee);
+    } else {
+        my_callback(`Employee ${id} doesn't exist`);
+    }
+}
+
+
+
+const getSalary = ( id, my_callback ) => {
+    const salary = salaries.find( s => s.id === id)?.salary;
+    
+    if(salary){
+        my_callback(null, salary);
+    } else {
+        my_callback(`Salary ${id} doesn't exist`);
+    }
+}
+
+
+const id = 2;
+
+getEmployee(id, (err, employee) => {
+    if( err ){
+        return console.log(err);
+    }
+    
+    getSalary(id, (err, salary) => {
+        if( err ){
+            return console.log(err);
+        }
+        console.log('Employee: ', employee, ' has a salary of ', salary);
+    });
+});
